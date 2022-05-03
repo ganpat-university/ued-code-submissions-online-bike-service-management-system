@@ -103,14 +103,13 @@
           <div class="col-9 menu">
             <ul class="ul_nav">
               <li><a href="Patner_dashboard.jsp">Home</a></li>
-              <li><a href="#Help">Help</a></li>
-              <li><a href="#About">About</a></li>
+              <li><a href="about.jsp">About</a></li>
               <li><a href="patnershop.jsp">Shop</a></li>
               <li>
 				<div class="dropdown">  
 					<button class="dropbtn"><c:out value="${uname}"></c:out></button>  
 					<div class="dropdown-content">  
-					<a href="index.html"> Logout </a>  
+					<a href="logout"> Logout </a>  
 					</div>  
 				</div>  
 			  </li>

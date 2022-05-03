@@ -91,8 +91,7 @@
 					<div class="dropdown-content">  
 					<a href="viewProfile.jsp"> Profile </a>  
 					<a href="viewBooking.jsp"> Booking Status </a>  
-					<a href="cart.jsp"> Cart </a> 
-					<a href="index.html"> Logout </a>  
+					<a href="logout"> Logout </a>  
 					</div>  
 				</div>  
 			  </li>

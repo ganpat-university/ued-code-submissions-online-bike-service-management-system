@@ -122,8 +122,8 @@
 				<div class="dropdown">  
 					<button class="dropbtn"><c:out value="${uname}"></c:out></button>  
 					<div class="dropdown-content">     
-					<a href="viewBooking.jsp"> Booking Status </a>  
-					<a href="index.html"> Logout </a>   
+					<a href="user_viewBooking.jsp"> Booking Status </a>  
+					<a href="logout"> Logout </a>   
 					</div>  
 				</div>  
 			  </li>

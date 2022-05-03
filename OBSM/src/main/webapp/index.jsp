@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,34 +21,29 @@
 }
 body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
-img {vertical-align: middle;}
-
+img {
+	vertical-align: middle;
+	max-height: 400px; 
+	max-width: 700px;
+	align-self: center;
+	
+}
 .slideshow-container {
   max-width: 1000px;
   position: relative;
-  margin: auto;
-}
-
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 1s ease;
+  padding: 30px;
+  width: 100%;
 }
 
 .active {
   background-color: #717171;
 }
 
-/* Fading animation */
 .fade {
   animation-name: fade;
-  animation-duration: 2.5s;
+  animation-duration: 5.5s;
+  width: 100%;
 }
-
 @keyframes fade {
   from {opacity: 0.2} 
   to {opacity: 1}
@@ -52,7 +52,11 @@ img {vertical-align: middle;}
 </style>
     <link rel="stylesheet" href="CSS/style.css" />
   </head>
-  <body>
+<body>
+  <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
+  <sql:query var="rs" dataSource="${con }">
+  	select * from home_image;
+  </sql:query>
     <div id="header" class="head">
       <div class="container navbars">
         <div class="row">
@@ -93,8 +97,37 @@ img {vertical-align: middle;}
         </div>
       </div>
     </div>
-    <div class="container-fluid section">
-      <h3 id="Program">Patnership Program</h3>
+    <div class="container-fluid" style="background-color: grey;">
+    	<div class="container image" style="padding:30px;">
+			<div class="slideshow-container"  style="background-color: black; box-shadow: 10px 10px 30px black;">
+				<c:forEach var="data" items="${rs.rows}">
+				<div class="mySlides fade" align="center" style="border: 3px white solid;">
+			  		<img src="${data.urlimg}" style="width:100%">
+				</div>
+				</c:forEach>
+		
+			</div>
+		</div>
+		<br>
+		<script>
+		let slideIndex = 0;
+		showSlides();
+		
+		function showSlides() {
+		  let i;
+		  let slides = document.getElementsByClassName("mySlides");
+		  for (i = 0; i < slides.length; i++) {
+		    slides[i].style.display = "none";  
+		  }
+		  slideIndex++;
+		  if (slideIndex > slides.length) {slideIndex = 1}    
+		  slides[slideIndex-1].style.display = "block";  
+		  setTimeout(showSlides, 6000); 
+		}
+		</script>
+    </div>
+    <div class="container-fluid section" style="background-color: #E9D5DA">
+      <h3 id="Program" style="background-color: rgb(0,0,0); color:white; padding:30px; width:400px; height: 70px;">Patnership Program</h3>
         <div class="container">
           <div class="row">
             <div class="col fac">
@@ -115,61 +148,10 @@ img {vertical-align: middle;}
           </div>
         </div>
       </div>
-    </div>
-    <div vlass="container-fluid">
-	<div class="slideshow-container">
-		
-		<div class="mySlides fade">
-		  <img src="img_nature_wide.jpg" style="width:100%">
-		</div>
-		
-		<div class="mySlides fade">
-		  <div class="numbertext">2 / 3</div>
-		  <img src="img_snow_wide.jpg" style="width:100%">
-		  <div class="text">Caption Two</div>
-		</div>
-		
-		<div class="mySlides fade">
-		  <div class="numbertext">3 / 3</div>
-		  <img src="https://media.istockphoto.com/photos/mam-mechanic-testing-motorbike-picture-id683815820?k=20&m=683815820&s=612x612&w=0&h=6eq8PnkF5WYee8I833rwdop5uQZQz1ROJ0nR2XElzHI=" style="width:100%">
-		  <div class="text">Caption Three</div>
-		</div>
-		
-		</div>
-		<br>
-		
-		<div style="text-align:center">
-		  <span class="dot"></span> 
-		  <span class="dot"></span> 
-		  <span class="dot"></span> 
-		</div>
-		
-		<script>
-		let slideIndex = 0;
-		showSlides();
-		
-		function showSlides() {
-		  let i;
-		  let slides = document.getElementsByClassName("mySlides");
-		  let dots = document.getElementsByClassName("dot");
-		  for (i = 0; i < slides.length; i++) {
-		    slides[i].style.display = "none";  
-		  }
-		  slideIndex++;
-		  if (slideIndex > slides.length) {slideIndex = 1}    
-		  for (i = 0; i < dots.length; i++) {
-		    dots[i].className = dots[i].className.replace(" active", "");
-		  }
-		  slides[slideIndex-1].style.display = "block";  
-		  dots[slideIndex-1].className += " active";
-		  setTimeout(showSlides, 4000); // Change image every 2 seconds
-		}
-		</script>
-    </div>"
     <div class="container-fluid footer">
       <div class="container">
         <div class="row">
-          <div class="col">Copyright Â©-All rights are reserved</div>
+          <div class="col">Copyright ©-All rights are reserved</div>
           <div class="col">Email | <a href="https://mail.google.com/mail/u/0/?ogbl&zx=w29j1upgl55j#inbox?compose=GTvVlcSMTDxFHNDgTbgbzfzDMfbmXTtpCVgNkrBxpDvCdskJSwjskBWBNNzlZxMqtrzdjHnslXvSM">meetprajapati20@gnu.ac.in</a></div>
           <div class="col">Ph No. | +91 8306974067</div>
           <div class="col">Online Bike Service Managament</div>

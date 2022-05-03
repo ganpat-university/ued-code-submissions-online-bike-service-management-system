@@ -19,12 +19,17 @@ try{
 	ps.setString(2, purl);
 	ps.setString(3, img_url);
 	boolean i=ps.execute();
-	if(i==true){
+	if(i==true){%>
+	<script>
+	        alert("Check Your Service Status In 'Booking Status'");
+	</script>
+	<%
 		out.print("<p align='center' style='width:100%; background: red;color: white;'>Product Added</p>");
 	}
 	RequestDispatcher rq=request.getRequestDispatcher("manageShop.jsp");
 	rq.forward(request, response);
 }catch(Exception e){out.println("Error : \n"+e);}
 %>
+
 </body>
 </html>

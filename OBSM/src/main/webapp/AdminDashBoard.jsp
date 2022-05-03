@@ -56,7 +56,7 @@
               <li><a href="manageRequest.jsp">Manage Request</a></li>
               <li><a href="userDetails.jsp">User</a></li>
               <li><a href="manageShop.jsp">Manage Shop</a></li>
-              <li><a href="index.html" style="color: #44bcc7;border:1px solid;">Logout</a></li>
+              <li><a href="logout" class="btn-outline-primary text-white p-2">Logout</a></li>
             </ul>
           </div>
         </div>

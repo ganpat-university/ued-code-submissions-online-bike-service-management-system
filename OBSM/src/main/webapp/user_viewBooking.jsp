@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
       integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
@@ -24,17 +26,14 @@
     	.body .body-content .table td,th{
     		border: 1px black solid;
     	}
-    	td{
-    		border: 1px black solid;
-    	}
-    	table{
+    	.table{
     		padding-top: 100px;
-    		width: 100%;
     	}
 		.dropbtn {  
     		background-color: grey;  
     		color: black;  
     		padding: 3px;  
+    		width: 120px;
     		font-size: 22px;  
 }  
 .dropdown {  
@@ -77,13 +76,12 @@
 } 
     </style>
     <link rel="stylesheet" href="CSS/style.css" />
-</head>
-<body>
- <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
-	
-	
+  </head>
+  <body>
   <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
-    
+  <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
+  <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
+   
     <div id="header">
       <div class="container navbars">
         <div class="row">
@@ -96,14 +94,15 @@
           </div>
           <div class="col-9 menu">
             <ul class="ul_nav">
-              <li><a href="Patner_dashboard.jsp">Home</a></li>
-              <li><a href="viewBooking.jsp">Manage Request</a></li>
-              
-              <li><a href="patnershop.jsp">Shop</a></li>
+              <li><a href="user_dashboard.jsp">Home</a></li>
+              <li><a href="userabout.jsp">About</a></li>
+              <li><a href="shop.jsp">Shop</a></li>
               <li>
 				<div class="dropdown">  
 					<button class="dropbtn"><c:out value="${uname}"></c:out></button>  
 					<div class="dropdown-content">  
+					<a href="viewProfile.jsp"> Profile </a>  
+					<a href="user_viewBooking.jsp"> Booking Status </a>  
 					<a href="logout"> Logout </a>  
 					</div>  
 				</div>  
@@ -113,47 +112,24 @@
         </div>
       </div>
     </div>
-
-        	<sql:query var="rs1" dataSource="${con}">
-				select * from booking left join user_details on booking.User_id=user_details.User_id where serviceCenter="${sname}";
-			</sql:query>	
-			
     <div class="container-fluid body">
       <div class="container body-content">
-        <div class="row" align="center" style="padding-top: 20px;">
-        
-<!--         bid, serviceCenter, Email_id, Brand, Phone_No, Service, status, Request_date, User_id -->
-        
-        <form action="updatestatus.jsp" method="post" style="width: 100%">
-			<table>
-			<tr><th>Booking ID</th><th>Service Center</th><th>Email ID</th><th>Brand</th><th>Contact No.</th><th>Service</th><th>Status</th><th>Requested date</th><th>Requested From</th><th>Update</th></tr>
-
-			<%! int i=0; %>
-			<c:forEach var="data" items="${rs1.rows}">
-					<tr><td>${data.bid}</td><td>${data.serviceCenter}</td><td>${data.Email_id}</td><td>${data.Brand}</td><td>${data.Phone_No}</td>
-					<td>
-						<c:if test="${data.status eq '0'}"><input type="text" name="ser" placeholder="Enter Service applied"></c:if>
-						<c:if test="${data.status eq '1'}">${data.Service}</c:if>						
-					</td><td>
-						<c:if test="${data.status eq '0'}"><p style="color: red;"><b>Not Completed</b></p></c:if>
-						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>Completed</b></p></c:if>
-					</td><td>${data.Request_date}</td><td>${data.FirstName}</td>
-					<td>
-						<c:if test="${data.status eq '0'}"><input type="radio" name="update" value="${data.bid}"></c:if>
-						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>-</b></p></c:if>
-					
-					
-					</td>
-			</tr>
-			
-			</c:forEach></table>
-			<div class="submit"  style="padding-top: 20px;">
-				<input type="submit" style="background-color: green; width:60%;letter-spacing: 4px; color: white; box-shadow: 2px 2px 1px black;" value="Update Data"></div>
-			</form>
+        <div class="row table">
+          <sql:query var="rs" dataSource="${con}">
+				select * from booking where User_id = ${cid};
+		</sql:query>
+		<table>
+		<tr><th>Service ID</th><th>Service Center</th><th>Email</th><th>Brand</th><th>Phone Number</th><th>Status</th><th>Request Date</th></tr>
+		<c:forEach var="data" items="${rs.rows}">
+			<tr><td>${data.bid}</td><td>${data.serviceCenter}</td><td>${data.Email_id}</td><td>${data.Brand}</td><td>${data.Phone_No}</td><td>
+			<c:if test="${data.status eq '0'}"><p style="color: red;"><b>Not Complete</b></p></c:if>
+			<c:if test="${data.status eq '1'}"><p style="color: green;"><b>Complete</b></p></c:if>
+			</td><td>${data.Request_date}</td></tr>
+		</c:forEach>
+        </table>
         </div>
       </div>
     </div>
-    
     <div class="container-fluid footer">
       <div class="container">
         <div class="row">
@@ -164,5 +140,5 @@
         </div>
       </div>
     </div>
-</body>
+  </body>
 </html>

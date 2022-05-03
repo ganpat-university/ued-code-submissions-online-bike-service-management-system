@@ -57,7 +57,9 @@
   <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
   <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
 	
-	
+	<%
+		HttpSession hp=request.getSession();
+	%>
   <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
     
     <div id="header">
@@ -73,16 +75,15 @@
           <div class="col-9 menu">
             <ul class="ul_nav">
               <li><a href="user_dashboard.jsp">Home</a></li>
-              <li><a href="#Help">Help</a></li>
-              <li><a href="#About">About</a></li>
+              <li><a href="userabout.jsp">About</a></li>
               <li><a href="shop.jsp">Shop</a></li>
               <li>
 				<div class="dropdown">  
 					<button class="dropbtn"><c:out value="${uname}"></c:out></button>  
 					<div class="dropdown-content">  
 					<a href="viewProfile.jsp"> Profile </a>  
-					<a href="viewBooking.jsp"> Booking Status </a>
-					<a href="index.html"> Logout </a>  
+					<a href="user_viewBooking.jsp"> Booking Status </a>
+					<a href="logout"> Logout </a>  
 					</div>  
 				</div>  
 			  </li>
@@ -173,13 +174,8 @@
 				</td>
 				</tr>
 				<tr><td colspan="2" align="center">
-				<input type="submit" style="color:white;background-color: blue;" onclick="confirmation()"></td></tr>
+				<input type="submit" style="color:white;background-color: blue;"></td></tr>
 			</form></table>
-			<script>
-            function confirmation() {
-                alert("You have successfully applied for Service Session.\n"+"Check Your Status In 'Booking Status'");
-            }
-        </script>
           </div>
         </div>
     	</div>

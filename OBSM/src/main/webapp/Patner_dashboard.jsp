@@ -17,12 +17,11 @@
       crossorigin="anonymous"
     />
     <style>
-		.dropbtn {  
-    		background-color: grey;  
-    		color: black;  
-    		padding: 3px;  
-    		width: 120px;
-    		font-size: 22px;  
+.dropbtn {  
+  		background-color: grey;  
+  		color: black;  
+  		padding: 3px;  
+  		font-size: 22px;  
 }  
 .dropdown {  
     display: inline-block;  
@@ -58,6 +57,12 @@
   <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
 	
 	
+           	<sql:query var="rs" dataSource="${con}">
+				select count(*) as c from booking where serviceCenter="${sname}" and status=0 ;
+			</sql:query>
+           	<c:forEach var="data" items="${rs.rows}">
+					<c:set var="f1" value="${data.c}"></c:set>
+			</c:forEach>
   <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
     
     <div id="header">
@@ -74,13 +79,12 @@
             <ul class="ul_nav">
               <li><a href="Patner_dashboard.jsp">Home</a></li>
               <li><a href="viewBooking.jsp">Manage Request</a></li>
-              <li><a href="#About">About</a></li>
               <li><a href="patnershop.jsp">Shop</a></li>
               <li>
 				<div class="dropdown">  
 					<button class="dropbtn"><c:out value="${uname}"></c:out></button>  
 					<div class="dropdown-content">  
-					<a href="index.html"> Logout </a>  
+					<a href="logout"> Logout </a>  
 					</div>  
 				</div>  
 			  </li>
@@ -105,21 +109,12 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="container-fluid section">
-        <div class="container" style="text-align: center;">
-          <div class="row" style="width:100%;text-align: center;">
-           	<div class="row" style="width:100%;"><h2 align="center">Total Request Pending</h2></div>
-           	
-           	<sql:query var="rs" dataSource="${con}">
-				select count(*) as c from booking where serviceCenter="${sname}";
-			</sql:query>
-           	<c:forEach var="data" items="${rs.rows}">
-					<c:set var="f1" value="${data.c}"></c:set>
-			</c:forEach>
-           	<div class="row" style="width:100%;text-align: center;">
-			<h4>${f1}</h4></div>
+        <div class="row" style="padding-top: 10%;justify-content:center; text-align: center;">
+        	<div class="col-6" >
+        		<div style="background-color: #005555;color: #A1E3D8; border: 2px black solid; border-radius: 7px;">
+        		<h2>Total Request Pending</h2>
+				<h4>${f1}</h4></div>
+        	</div>
         </div>
       </div>
     </div>

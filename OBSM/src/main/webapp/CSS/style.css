@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500&display=swap');
 *{
     transition: all 0.5s;
+    font-family: 'Poppins',sans-serif;
 }
 a{
     text-transform: uppercase;
@@ -34,10 +36,11 @@ a{
 .ul_nav li a{
     color: #ffffff;
     text-decoration: none;
+        vertical-align: -9px;
 }
 .ul_nav li a:hover{
     color: #15f800;
-    font-weight: bold;
+/*     font-weight: bold; */
     padding: 5px;
     border-radius: 3px;
     box-shadow: 2px 2px 2px inset;
@@ -234,4 +237,6 @@ label:hover{
 .adminform{
 	background-color: #BAD8FF;
 }
-
+.dropbtn {    
+    width: 180px;
+}

@@ -114,9 +114,8 @@
           </div>
           <div class="col-9 menu">
             <ul class="ul_nav">
-              <li><a href="user_dashboard.jsp">Home</a></li>
-              <li><a href="#Help">Help</a></li>
-              <li><a href="#About">About</a></li>
+              <li><a href="index.jsp">Home</a></li>
+              <li><a href="about.jsp">About</a></li>
               <li><a href="shop.jsp">Shop</a></li>
               <li>
 				<a href="login.html">Sign-In</a>  
