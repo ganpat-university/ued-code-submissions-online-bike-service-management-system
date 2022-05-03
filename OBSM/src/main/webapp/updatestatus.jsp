@@ -15,14 +15,17 @@ Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/obsm_pro
 
 String uid=request.getParameter("update");
 String ser=request.getParameter("ser");
+String cost=request.getParameter("num_update");
 PreparedStatement ps1=null;
 PreparedStatement ps2=null;
 		ps1=con.prepareStatement("Update booking set status=1 where bid=?");
-		ps2=con.prepareStatement("Update booking set Service=? where bid=?");
+		ps2=con.prepareStatement("update booking set Service=?,cost=? where bid=?");
 
 		ps1.setInt(1, Integer.parseInt(uid));
 		ps2.setString(1, ser);
-		ps2.setInt(2, Integer.parseInt(uid));
+		ps2.setInt(2, Integer.parseInt(cost));
+		ps2.setInt(3, Integer.parseInt(uid));
+		
 		ps1.executeUpdate();
 		ps1.close();
 		ps2.executeUpdate();

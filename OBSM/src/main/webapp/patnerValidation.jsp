@@ -25,6 +25,10 @@
 			<c:set var="uname" value="${data.OwnerName}" scope="session"></c:set>
 			<c:set var="sname" value="${data.ServiceCenterName}" scope="session"></c:set>
 			<jsp:forward page="Patner_dashboard.jsp"></jsp:forward>
+			
+			<%
+				HttpSession hp=request.getSession();
+			%>
 		</c:if>
 	</c:if>
 </c:forEach>

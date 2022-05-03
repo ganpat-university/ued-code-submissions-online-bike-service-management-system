@@ -75,12 +75,40 @@
 	background-color: #a30023;
 	color: white;
 } 
+table{
+	border: 1px black solid;
+	background-color: #ffde96;
+	text-align: center;
+}
+th{
+	background-color: #a30023;
+	color: white;
+	border: 1px white solid;
+	
+} 
+td{
+	border: 1px white solid;
+	text-align:left;
+	padding-left: 5px;
+}
+.body{
+	min-height: 100vh;
+}
+table{
+	width: 100%;
+}
     </style>
     <link rel="stylesheet" href="CSS/style.css" />
 </head>
 <body>
  <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
 	
+			<sql:query var="rs1" dataSource="${con}">
+				select * from patner_details where ServiceCenterName="${sname}";
+			</sql:query>
+           	<c:forEach var="data" items="${rs1.rows}">
+					<c:set var="f2" value="${data.Status}"></c:set>
+			</c:forEach>
 	
   <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
     
@@ -119,20 +147,19 @@
 			</sql:query>	
 			
     <div class="container-fluid body">
-      <div class="container body-content">
+<!--       <div class="container body-content"> -->
         <div class="row" align="center" style="padding-top: 20px;">
         
-<!--         bid, serviceCenter, Email_id, Brand, Phone_No, Service, status, Request_date, User_id -->
-        
+        <c:if test="${f2 eq 1}">
         <form action="updatestatus.jsp" method="post" style="width: 100%">
 			<table>
-			<tr><th>Booking ID</th><th>Service Center</th><th>Email ID</th><th>Brand</th><th>Contact No.</th><th>Service</th><th>Status</th><th>Requested date</th><th>Requested From</th><th>Update</th></tr>
+			<tr><th>Booking ID</th><th>Service Center</th><th>Email ID</th><th>Brand</th><th>Contact No.</th><th>Service</th><th>Status</th><th>Requested date</th><th>Requested From</th><th>Update</th><th width="50px">Cost</th></tr>
 
 			<%! int i=0; %>
 			<c:forEach var="data" items="${rs1.rows}">
 					<tr><td>${data.bid}</td><td>${data.serviceCenter}</td><td>${data.Email_id}</td><td>${data.Brand}</td><td>${data.Phone_No}</td>
 					<td>
-						<c:if test="${data.status eq '0'}"><input type="text" name="ser" placeholder="Enter Service applied"></c:if>
+						<c:if test="${data.status eq '0'}"><input type="text" name="ser" placeholder="Enter Service applied" style="width:150px;"></c:if>
 						<c:if test="${data.status eq '1'}">${data.Service}</c:if>						
 					</td><td>
 						<c:if test="${data.status eq '0'}"><p style="color: red;"><b>Not Completed</b></p></c:if>
@@ -140,18 +167,23 @@
 					</td><td>${data.Request_date}</td><td>${data.FirstName}</td>
 					<td>
 						<c:if test="${data.status eq '0'}"><input type="radio" name="update" value="${data.bid}"></c:if>
-						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>-</b></p></c:if>
-					
-					
+						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>-</b></p></c:if>					
+					</td>
+					<td>
+						<c:if test="${data.status eq '0'}"><input type="number" name="num_update" placeholder="Enter Cost" style="width:80px;"></c:if>
+						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>${data.cost}</b></p></c:if>					
 					</td>
 			</tr>
 			
 			</c:forEach></table>
 			<div class="submit"  style="padding-top: 20px;">
 				<input type="submit" style="background-color: green; width:60%;letter-spacing: 4px; color: white; box-shadow: 2px 2px 1px black;" value="Update Data"></div>
-			</form>
+			</form></c:if>
+        <c:if test="${f2 eq 0}">
+        <h2>Your Verification still Pending.</h2>
+        </c:if>
         </div>
-      </div>
+<!--       </div> -->
     </div>
     
     <div class="container-fluid footer">

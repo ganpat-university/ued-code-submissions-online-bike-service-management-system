@@ -90,6 +90,13 @@
 <body>
 <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
 
+			<sql:query var="rs1" dataSource="${con}">
+				select * from patner_details where ServiceCenterName="${sname}";
+			</sql:query>
+           	<c:forEach var="data" items="${rs1.rows}">
+					<c:set var="f2" value="${data.Status}"></c:set>
+			</c:forEach>
+<!-- 	------------------------------------------------------------------------------------------------------------------------------------ -->
     <div id="header">
       <div class="container navbars">
         <div class="row">
@@ -154,6 +161,7 @@
         	
         	<div class="form-addItem">
         		<div class="header" style="padding-bottom: 20px;"><h3 align="center">Add Products</h3></div>
+	        <c:if test="${f2 eq 1}">
         		<form action="addProduct.jsp">
         		<table width=50%>
         			<tr><td align="right" style="padding-left: 10px;">Product Name</td><td><input type="text" name="p_name" placeholder="Enter Product Name" required></td></tr>
@@ -164,7 +172,10 @@
         		<div style="width:100%;">
         		<center>
 	        		<input type="submit" style="background-color: green; width:50%;color:white;"></div></center>
-        		</form>
+        		</form></c:if>
+	        <c:if test="${f2 eq 0}">
+	        	<div class="header" style="text-align: center;color:red;"><h2>You Have not Rights To Add Product.</h2></div>
+	        </c:if>
         	</div>
         </div>
       </div>

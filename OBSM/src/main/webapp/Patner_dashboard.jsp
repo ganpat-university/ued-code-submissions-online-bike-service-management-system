@@ -56,13 +56,21 @@
   <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
   <sql:setDataSource var="con" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3307/obsm_project" user="root" password="meet123"/>
 	
-	
            	<sql:query var="rs" dataSource="${con}">
 				select count(*) as c from booking where serviceCenter="${sname}" and status=0 ;
 			</sql:query>
+			
            	<c:forEach var="data" items="${rs.rows}">
 					<c:set var="f1" value="${data.c}"></c:set>
 			</c:forEach>
+			
+			<sql:query var="rs1" dataSource="${con}">
+				select * from patner_details where ServiceCenterName="${sname}";
+			</sql:query>
+           	<c:forEach var="data" items="${rs1.rows}">
+					<c:set var="f2" value="${data.Status}"></c:set>
+			</c:forEach>
+	
   <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
     
     <div id="header">
@@ -93,8 +101,11 @@
         </div>
       </div>
     </div>
+        <c:if test="${f2 eq 0}"><div style="background-color: red;">
+      <marquee bgcolor="red" height="22" width="100%" direction="left" scrollamount="15" style="color:white; font-weight: bolder;margin:0px;">Your Verification is Pending.</marquee></c:if></div>
     <div class="container-fluid body">
       <div class="container body-content">
+      
         <div class="row">
           <div class="col">
             <div class="map">
@@ -109,13 +120,14 @@
             </div>
           </div>
         </div>
+        <c:if test="${f2 eq 1}">
         <div class="row" style="padding-top: 10%;justify-content:center; text-align: center;">
         	<div class="col-6" >
         		<div style="background-color: #005555;color: #A1E3D8; border: 2px black solid; border-radius: 7px;">
         		<h2>Total Request Pending</h2>
 				<h4>${f1}</h4></div>
         	</div>
-        </div>
+        </div></c:if>
       </div>
     </div>
     <div class="container-fluid footer">

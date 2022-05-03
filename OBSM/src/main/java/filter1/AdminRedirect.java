@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 public class AdminRedirect extends HttpServlet{
 	public void doPost(HttpServletRequest rq,HttpServletResponse rs) throws ServletException,IOException {
 		rs.setContentType("text/html");
+		HttpSession hs=rq.getSession();
 		RequestDispatcher rd=rq.getRequestDispatcher("AdminDashBoard.jsp");
 		rd.forward(rq, rs);
 	}

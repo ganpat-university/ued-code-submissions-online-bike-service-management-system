@@ -24,6 +24,9 @@
 		<c:if test="${pwd eq pwd2}">
 			<c:set var="uname" value="${data.FirstName}" scope="session"></c:set>
 			<c:set var="cid" value="${data.User_id}" scope="session"></c:set>
+			<%
+				HttpSession hp=request.getSession();
+			%>
 			<jsp:forward page="user_dashboard.jsp"></jsp:forward>
 		</c:if>
 	</c:if>

@@ -16,7 +16,7 @@
 	<c:set var="ph" value="${param.ph}"></c:set>
 	<c:set var="ser_list" value="${param.ser_list}"></c:set>
 	<sql:update dataSource="${con}">
-		insert into booking(User_id,serviceCenter, Email_id, Brand, Phone_No, Service, status,Request_date) values(${cid},"${ser}","${mail}","${bike}","${ph}","${ser_list}",0,CURDATE());
+		insert into booking(User_id,serviceCenter, Email_id, Brand, Phone_No, Service, status,Request_date,cost) values(${cid},"${ser}","${mail}","${bike}","${ph}","${ser_list}",0,CURDATE(),0);
 	</sql:update>
 	<script>
 	        alert("Check Your Service Status In 'Booking Status'");

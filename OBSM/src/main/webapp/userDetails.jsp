@@ -118,12 +118,16 @@ form{
 			<div class="col">
 			<h4 width=100% style="background-color: #82A284;color: white;border: 2px black solid;">Booking</h4></div>
 			<table>
-			<tr><th>Booking ID</th><th>Service Center</th><th>Email ID</th><th>Brand</th><th>Contact No.</th><th>Service</th><th>Status</th><th>Request_date</th><th>Request From</th></tr>
+			<tr><th>Booking ID</th><th>Service Center</th><th>Email ID</th><th>Brand</th><th>Contact No.</th><th width="110px">Service</th><th>Status</th><th>Request_date</th><th>Request From</th><th width="70px"> Cost </th></tr>
 			<c:forEach var="data" items="${rs1.rows}">
 					<tr><td>${data.bid}</td><td>${data.serviceCenter}</td><td>${data.Email_id}</td><td>${data.Brand}</td><td>${data.Phone_No}</td><td>${data.Service}</td><td>
 						<c:if test="${data.status eq '0'}"><p style="color: red;"><b>Not Completed</b></p></c:if>
 						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>Completed</b></p></c:if>
 					</td><td>${data.Request_date}</td><td>${data.FirstName}</td>
+					<td>
+						<c:if test="${data.status eq '0'}"><b>-</b></c:if>
+						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>${data.cost}</b></p></c:if>					
+					</td>
 			</tr>
 			</c:forEach></table>
 			</div>
