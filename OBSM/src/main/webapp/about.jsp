@@ -20,7 +20,7 @@
    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500&display=swap');
    
    	.section{
-   		background-image: url("https://wallpaperbat.com/img/353146-motorcycle-desktop-wallpaper.jpg");
+   		background-image: url("https://images.pexels.com/photos/7864/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
    		width: 100%;
    		min-height: 82vh;
    	}

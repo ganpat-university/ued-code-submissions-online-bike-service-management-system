@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Booking</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -119,12 +119,17 @@
 				select * from booking where User_id = ${cid};
 		</sql:query>
 		<table>
-		<tr><th>Service ID</th><th>Service Center</th><th>Email</th><th>Brand</th><th>Phone Number</th><th>Status</th><th>Request Date</th></tr>
+		<tr><th>Service ID</th><th>Service Center</th><th>Email</th><th>Brand</th><th>Phone Number</th><th>Status</th><th>Request Date</th><th>Cost</th></tr>
 		<c:forEach var="data" items="${rs.rows}">
 			<tr><td>${data.bid}</td><td>${data.serviceCenter}</td><td>${data.Email_id}</td><td>${data.Brand}</td><td>${data.Phone_No}</td><td>
 			<c:if test="${data.status eq '0'}"><p style="color: red;"><b>Not Complete</b></p></c:if>
 			<c:if test="${data.status eq '1'}"><p style="color: green;"><b>Complete</b></p></c:if>
-			</td><td>${data.Request_date}</td></tr>
+			</td><td width="120px">${data.Request_date}</td>
+			<td width="100px">
+			<c:if test="${data.status eq '0'}"><p style="color: red;"><b>-</b></p></c:if>
+			<c:if test="${data.status eq '1'}">${data.cost} Rs.</c:if>
+			</td>
+			</tr>
 		</c:forEach>
         </table>
         </div>

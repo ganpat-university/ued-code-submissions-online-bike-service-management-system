@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Admin-Dashboard</title>
 <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -105,13 +105,12 @@
       </div>
     </div>
 <!-- {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}}{}{}{}{}{}{}{} -->    
-    <div class="container-fluid section">
+       <div class="container-fluid section">
         <div class="container">
           <div class="row">
-            --------------------------------
+            <div class="col" style="letter-spacing: 10px;font-weight: bolder; word-spacing: 20px;">ADMIN PAGE</div>
           </div>
         </div>
-      </div>
     </div>
     <div class="container-fluid footer">
       <div class="container">

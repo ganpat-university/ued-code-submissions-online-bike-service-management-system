@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Booking</title>
 <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -79,7 +79,7 @@ form{
           </div>
           <div class="col-9 menu">
             <ul class="ul_nav">
-              <li><a href="AdminDashBoard.html">Home</a></li>
+              <li><a href="AdminDashBoard.jsp">Home</a></li>
               <li><a href="manageRequest.jsp">Manage Request</a></li>
               <li><a href="userDetails.jsp">User</a></li>
               <li><a href="manageShop.jsp">Manage Shop</a></li>
@@ -120,13 +120,7 @@ form{
       </div>
     </div>
 <!-- {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}}{}{}{}{}{}{}{} -->    
-    <div class="container-fluid section">
-        <div class="container">
-          <div class="row">
-            --------------------------------
-          </div>
-        </div>
-    </div>
+
     <div class="container-fluid footer">
       <div class="container">
         <div class="row">

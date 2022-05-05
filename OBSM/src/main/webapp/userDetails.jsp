@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Profile</title>
 <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -94,7 +94,7 @@ form{
 				select * from user_details Order by User_id;
 			</sql:query>
         	<sql:query var="rs1" dataSource="${con}">
-				select * from booking left join user_details on booking.User_id=user_details.User_id;
+				select * from booking left join user_details on booking.User_id=user_details.User_id order by status;
 			</sql:query>		
     <div class="container-fluid body">
       <div class="container body-content">
@@ -120,7 +120,11 @@ form{
 			<table>
 			<tr><th>Booking ID</th><th>Service Center</th><th>Email ID</th><th>Brand</th><th>Contact No.</th><th width="110px">Service</th><th>Status</th><th>Request_date</th><th>Request From</th><th width="70px"> Cost </th></tr>
 			<c:forEach var="data" items="${rs1.rows}">
-					<tr><td>${data.bid}</td><td>${data.serviceCenter}</td><td>${data.Email_id}</td><td>${data.Brand}</td><td>${data.Phone_No}</td><td>${data.Service}</td><td>
+					<tr><td>${data.bid}</td><td>${data.serviceCenter}</td><td>${data.Email_id}</td><td>${data.Brand}</td><td>${data.Phone_No}</td>
+					<td>
+						<c:if test="${data.status eq '0'}"><p style="color: red;"><b>-</b></p></c:if>
+						<c:if test="${data.status eq '1'}">${data.Service}</c:if>
+					</td><td>
 						<c:if test="${data.status eq '0'}"><p style="color: red;"><b>Not Completed</b></p></c:if>
 						<c:if test="${data.status eq '1'}"><p style="color: green;"><b>Completed</b></p></c:if>
 					</td><td>${data.Request_date}</td><td>${data.FirstName}</td>

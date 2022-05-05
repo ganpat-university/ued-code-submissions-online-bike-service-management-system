@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Shop</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -115,8 +115,7 @@
           <div class="col-9 menu">
             <ul class="ul_nav">
               <li><a href="user_dashboard.jsp">Home</a></li>
-              <li><a href="#Help">Help</a></li>
-              <li><a href="#About">About</a></li>
+              <li><a href="userabout.jsp">About</a></li>
               <li><a href="shop.jsp">Shop</a></li>
               <li>
 				<div class="dropdown">  
